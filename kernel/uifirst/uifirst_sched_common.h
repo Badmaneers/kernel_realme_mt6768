@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2020 Oplus. All rights reserved.
  */
-
+#include <stdbool.h>
 
 #ifndef _OPLUS_CFS_COMMON_H_
 #define _OPLUS_CFS_COMMON_H_
@@ -54,9 +54,11 @@ extern void find_ux_task_cpu(struct task_struct *tsk, int *target_cpu);
 extern int set_ux_task_cpu_common(struct task_struct *task, int prev_cpu, int *target_cpu);
 static inline void find_slide_boost_task_cpu(struct task_struct *tsk, int *target_cpu) {}
 
-static inline is_animator_ux_task(struct task_struct *task)
+
+
+static inline bool is_animator_ux_task(struct task_struct *task)
 {
-	return task->static_ux == 1;
+    return task->static_ux == 1;
 }
 
 static inline bool is_heavy_ux_task(struct task_struct *task)

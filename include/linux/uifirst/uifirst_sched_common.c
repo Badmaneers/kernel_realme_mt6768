@@ -14,7 +14,6 @@
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
 #include <../fs/proc/internal.h>
-
 #include "uifirst_sched_common.h"
 
 int ux_min_sched_delay_granularity;     /*ux thread delay upper bound(ms)*/

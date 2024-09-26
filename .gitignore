@@ -126,7 +126,7 @@ all.config
 kernel/configs/android-*.cfg
 
 clang
-AnyKernel
+anyKernel
 out
 even.sh
 log.txt

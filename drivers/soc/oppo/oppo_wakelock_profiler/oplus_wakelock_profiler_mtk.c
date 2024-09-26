@@ -964,7 +964,7 @@ void oplus_rpmh_stats_statics(const char *rpm_name, u64 sleep_count,
 
 EXPORT_SYMBOL(oplus_rpmh_stats_statics);
 
-static void dump_rpmh_state()
+static void dump_rpmh_state(void)
 {
 	int i, len, suspendrate;
 	struct rpmh_state_desc_t *desc;
@@ -1534,7 +1534,7 @@ static ssize_t active_max_store(struct kobject *kobj,
 	return count;
 }
 
-static void dump_active_max()
+static void dump_active_max(void)
 {
 	int srcuidx, i, j;
 	int max_ws_rate;
@@ -1647,8 +1647,7 @@ struct timespec64 print_utc_time(char *annotation)
 }
 
 
-static void screen_off_info_record()
-{
+void screen_off_info_record(struct work_struct *work) {
 	statisticstime_start = print_utc_time("Start clear power info...");
 	kernel_time_reset();/*clear wakeup source states when screen off*/
 	active_max_reset();/*clear wakeup source states when screen off*/
@@ -1658,8 +1657,7 @@ static void screen_off_info_record()
 	return;
 }
 
-static void screen_on_info_record()
-{
+void screen_on_info_record(struct work_struct *work) {
 	print_utc_time("Start dump power info...");
 
 	if ((ts_start.tv_sec != 0)
@@ -1688,6 +1686,7 @@ static void screen_on_info_record()
 }
 
 static DECLARE_DELAYED_WORK(clear_power_info, screen_off_info_record);
+
 static DECLARE_DELAYED_WORK(dump_power_info, screen_on_info_record);
 
 static void dump_power_info_control(char *annotation)

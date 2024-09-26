@@ -13,7 +13,7 @@ endif
 ifneq ($(LLVM),)
 LD_COMPAT ?= $(LD)
 else
-LD_COMPAT ?= $(CROSS_COMPILE_COMPAT)ld
+LD_COMPAT ?= arm-linux-gnueabihf-ld
 endif
 
 # Same as cc-*option, but using CC_ARM32 instead of CC
